@@ -16,9 +16,9 @@ public class Appro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int qteAppro;
     @DateTimeFormat(pattern = "yyyy/MM/dd")//format de la date (valable juste en dessous)
     private LocalDate dateAppro;
-    private int qteAppro;
     @ManyToOne//pour une categorie j'ai plusieurs articles
     @JoinColumn(name= "articleId",insertable = false, updatable = false)
     private Article article;

@@ -1,6 +1,7 @@
 package com.defi.tp_vente.controller;
 
 import com.defi.tp_vente.modele.Article;
+import com.defi.tp_vente.modele.Constante;
 import com.defi.tp_vente.service.ArticleService;
 import com.defi.tp_vente.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,14 @@ import java.time.LocalDate;
 
 @Controller
 public class ArticleController {
+
     @Autowired
     private CategorieService categorieService;
     @Autowired
     private ArticleService articleService;
     @GetMapping("/articles/show")
     public String showAllArticles(Model model){
-        model.addAttribute("listeArticle",articleService.showAllArticles());
+        model.addAttribute("listeArticle",articleService.changerEtatArticle( articleService.showAllArticles()));
         //pas obligé d'avoir le mm nom que le return
         return "article/ListeArticles";
     }
@@ -54,5 +56,10 @@ public class ArticleController {
         articleService.deleteArticle(id);
         return "redirect:/articles/show";
 
+    }
+    @GetMapping("articles/etatSeuil")
+    public String listeSeuil(Model model){
+        model.addAttribute("listeSeuil",articleService.articleEtatCritique(articleService.showAllArticles()));
+        return "article/listeSeuil";
     }
 }
