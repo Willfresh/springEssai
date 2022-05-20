@@ -13,13 +13,16 @@ import java.util.List;
 
 @Repository
 
-public interface ArticleReposirory extends JpaRepository<Article,Integer> {
+public interface
+ArticleReposirory extends JpaRepository<Article,Integer> {
     @Modifying
     @Transactional
     @Query("Update Article a set a.qteStock=a.qteStock +:qte where a.id=:idArticle")
     void updateStockArticle(@Param("qte") int qte, @Param("idArticle") int idArticle);
 
-    //List<Article> findByEtat(String etat);
+    /*List<Article> findByName(String libelle);*/
+
+
 
 }
 

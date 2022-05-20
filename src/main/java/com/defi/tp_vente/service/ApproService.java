@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ApproService {
     @Autowired
-    ApproRepository approRepository;
+    private ApproRepository approRepository;
 
     public void saveAppro(Appro appro) {approRepository.save(appro);
     }

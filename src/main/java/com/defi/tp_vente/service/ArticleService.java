@@ -30,6 +30,7 @@ public class ArticleService {
     }
     public void updateStockArticle(int qte, int id){
         articleRepository.updateStockArticle(qte, id);}
+
     public List<Article> changerEtatArticle(List<Article> liste){
         for (Article a:liste){
             if (a.getQteSeuil()>a.getQteStock()){
@@ -51,5 +52,11 @@ public class ArticleService {
         }
         return listeSeuil;
     }
+    /*public List<Article> findByName(List<Article> liste){
+        List<Article> listeName = new ArrayList<>();
+        for (Article a:liste){
+            if(a.getLibelle()=a.)
+        }
+    }*/
 
 }

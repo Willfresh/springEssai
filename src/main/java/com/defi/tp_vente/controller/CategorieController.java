@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CategorieController {
     @Autowired
     private CategorieService categorieService;
-    @GetMapping("/categories/show")
+    @GetMapping("/categoriesShow")
     public String showAllCategories(Model model){
         model.addAttribute("listeCategorie",categorieService.showAllCategories());
         //pas obligé d'avoir le mm nom que le return
-        return "categorie/ListeCategories";
+        return "admin/ListeCategories";
     }
-    @GetMapping("/categorie/form")
+    @GetMapping("/categorieForm")
     public String showFormCategorie(){
-        return "categorie/FormCategories";
+        return "admin/FormCategories";
     }
     @PostMapping("/categorie/save")
     public String saveCategorie(Categorie categorie){
         categorieService.saveCategorie(categorie);
-        return "redirect:/categories/show";
+        return "redirect:/categoriesShow";
     }
 }

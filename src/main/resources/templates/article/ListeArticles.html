@@ -35,7 +35,7 @@
             <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <form class="d-flex" >
           <input class="form-control me-2" type="search" placeholder="Search an article" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -43,11 +43,7 @@
     </div>
   </nav>
   <div class="container">
-    <!--<ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#"><h2>Liste des articles</h2></a>
-      </li>
-    </ul>-->
+
     <h2>Liste des articles</h2>
     <table class="table">
       <thead>
@@ -73,7 +69,7 @@
         <td th:text="${article.qteStock}"></td>
         <td th:text="${article.qteSeuil}"></td>
         <td th:text="${article.dateCreation}"></td>
-        <td th:text="${article.etat}"></td>
+        <td ><span class="badge bg-success" th:text="${article.etat}" ></span></td>
         <td>
           <a class="btn btn-danger" th:href="@{/article/delete/{id}(id=${article.id})}" role="button">Delete</a>
           <a class="btn btn-primary" th:href="@{/article/edit/{id}(id=${article.id})}"role="button">Editer</a>

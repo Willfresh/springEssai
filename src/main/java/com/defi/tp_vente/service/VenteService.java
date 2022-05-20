@@ -10,7 +10,8 @@ import java.util.List;
 @Service
 public class VenteService {
     @Autowired
-    VenteRepository venteRepository;
+    private VenteRepository venteRepository;
+
 
     public void saveVente(Vente vente) {venteRepository.save(vente);
     }
@@ -22,5 +23,9 @@ public class VenteService {
         return venteRepository.findById(id).get();
     }
     public void deleteVente(int id){venteRepository.deleteById(id);}
+    public void degradeStock(int qte_art, int id_Art){
+        venteRepository.degradeStockArticle(qte_art, id_Art);}
+
+
 
 }

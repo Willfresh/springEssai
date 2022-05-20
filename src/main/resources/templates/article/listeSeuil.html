@@ -43,11 +43,7 @@
     </div>
 </nav>
 <div class="container">
-    <!--<ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#"><h2>Liste des articles</h2></a>
-      </li>
-    </ul>-->
+
     <h2>Liste des articles en dessous du seuil</h2>
     <table class="table">
         <thead>
@@ -59,7 +55,6 @@
             <th>Qte stock</th>
             <th>Qte Seuil</th>
             <th>Date Creation</th>
-            <th>Etat</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -73,7 +68,6 @@
             <td th:text="${article.qteStock}"></td>
             <td th:text="${article.qteSeuil}"></td>
             <td th:text="${article.dateCreation}"></td>
-            <td th:text="${article.etat}"></td>
             <td>
                 <a class="btn btn-danger" th:href="@{/article/delete/{id}(id=${article.id})}" role="button">Delete</a>
                 <a class="btn btn-primary" th:href="@{/article/edit/{id}(id=${article.id})}"role="button">Editer</a>

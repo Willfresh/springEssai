@@ -22,16 +22,16 @@ public class ApproController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping("/appro/show")
+    @GetMapping("/approShow")
     public String showAllAppro(Model model){
         model.addAttribute("listeAppro",approService.showAllAppro());
         //pas obligé d'avoir le mm nom que le return
-        return "appro/ListeAppro";
+        return "admin/ListeAppro";
     }
-    @GetMapping("/appro/form")
+    @GetMapping("/approForm")
     public String ShowFormAppro(Model model){
         model.addAttribute("listeAppro",articleService.showAllArticles());
-        return "appro/FormAppro";
+        return "admin/FormAppro";
     }
     @PostMapping("/appro/save")
     public String saveAppro(Appro appro){
@@ -39,24 +39,24 @@ public class ApproController {
         appro.setDateAppro(LocalDate.now());
         approService.saveAppro(appro);
         articleService.updateStockArticle(appro.getQteAppro(),appro.getArticleId());
-        return "redirect:/appro/show";
+        return "redirect:/approShow";
     }
-    @GetMapping("/appro/edit/{id}")
+    @GetMapping("/approEdit{id}")
     public String approEdit(@PathVariable("id") int id, Model model){
         model.addAttribute("Un_approvisionnement",approService.showOneAppro(id));
         model.addAttribute("listeAppro",articleService.showAllArticles());
-        return "appro/approEdit";
+        return "admin/approEdit";
     }
     @PostMapping("appro/update")
     public  String updateAppro(@ModelAttribute("approvisionnement") Appro appro){
         approService.saveAppro(appro);
-        return "redirect:/appro/show";
+        return "redirect:/approShow";
 
     }
-    @GetMapping("/appro/delete/{id}")
+    @GetMapping("/appro/delete{id}")
     public String deleteAppro(@PathVariable("id") int id){
         approService.deleteAppro(id);
-        return "redirect:/appro/show";
+        return "redirect:/approShow";
 
     }
 }
