@@ -236,9 +236,9 @@
       <h1>Blank Page</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
+          <li class="breadcrumb-item active">Formulaire de modification d'un approvisionement</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -246,37 +246,38 @@
     <section class="section">
       <div class="container">
 
-        <h2>Liste des articles en dessous du seuil</h2>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Id</th>
-            <th>Catégorie</th>
-            <th>Libellé</th>
-            <th>Prix</th>
-            <th>Qte stock</th>
-            <th>Qte Seuil</th>
-            <th>Date Creation</th>
-            <th>Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <!-- thymeleaf a se documenter-->
-          <tr th:each="article:${listeSeuil}">
-            <td th:text="${article.id}"></td>
-            <td th:text="${article.categorie.designation}"></td>
-            <td th:text="${article.libelle}"></td>
-            <td th:text="${article.prix}"></td>
-            <td th:text="${article.qteStock}"></td>
-            <td th:text="${article.qteSeuil}"></td>
-            <td th:text="${article.dateCreation}"></td>
-            <td>
-                <a th:href = "@{/articleApproEdit{id}(id = ${article.id})}" class="btn btn-warning"><i class="bi bi-cart4"></i></a>
-            </td>
-          </tr>
-          </tbody>
-          <tfoot></tfoot>
-        </table>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><h2>Formulaire de mise à jour d'un approvisionnement</h2></a>
+          </li>
+        </ul>
+
+
+        <form class="row g-3" th:action="@{/article/appro/update}" th:object="${un_article}" method="post">
+
+          <div class = "col-md-6">
+            <label for="validationDefault02" class="form-label">Catégorie</label>
+            <input type = "text" th:field="*{categorie.designation}" disabled class="form-control" id="validationDefault02" >
+          </div>
+          <div class = "col-md-6">
+            <label for="validationDefault03" class="form-label">Libelle</label>
+            <input type = "text" th:field="*{libelle}" disabled class="form-control" id="validationDefault03" >
+          </div>
+
+          <div class = "col-md-6">
+            <label for="validationDefault04" class="form-label">Quantité Stock</label>
+            <input type = "number" th:field="*{qteStock}" disabled class="form-control" id="validationDefault04">
+          </div>
+
+          <div class = "col-md-6">
+            <label for="validationDefault05" class="form-label">Quantite approvisionneé</label>
+            <input type="number" name="qte" class="form-control"  id="validationDefault05">
+          </div>
+          <div class="col-12">
+            <button type="submit " class="btn btn-primary">Enregistrer</button>
+          </div>
+
+        </form>
       </div>
     </section>
 

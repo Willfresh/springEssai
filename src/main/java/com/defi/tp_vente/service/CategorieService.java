@@ -26,4 +26,8 @@ public class CategorieService {
     public void deleteCategory(int id){
         categorieRepository.deleteById(id);
     }
+
+    public List<Categorie> findByDesignation(String designation) {
+        return categorieRepository.findByDesignation(designation);
+    }
 }

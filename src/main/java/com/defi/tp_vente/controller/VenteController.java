@@ -6,10 +6,7 @@ import com.defi.tp_vente.service.VenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -36,6 +33,7 @@ public class VenteController {
         vente.setQteVente(vente.getQteVente());
         vente.setDateVente(LocalDate.now());
         venteService.saveVente(vente);
+        articleService.degrade(vente.getQteVente(),vente.getArticleId());
         return "redirect:/venteShow";
     }
     @GetMapping("/venteEdit{id}")
@@ -54,8 +52,17 @@ public class VenteController {
     public String deleteVente(@PathVariable("id") int id){
         venteService.deleteVente(id);
         return "redirect:/venteShow";
-
+    }
+    @GetMapping("/qte/vente")
+    public String ListeVente(Model model, @RequestParam int qteVente){
+        model.addAttribute("listeByQteVente",venteService.findByQuantiteVente(qteVente));
+        return "/admin/ListeQteVente";
     }
 
+    @PostMapping("/vente/qteVente")
+    public String listeByname(@RequestParam int qte){
+        venteService.findByQuantiteVente(qte);
+        return "redirect:/qte/vente";
+    }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CategorieController {
@@ -26,5 +27,17 @@ public class CategorieController {
     public String saveCategorie(Categorie categorie){
         categorieService.saveCategorie(categorie);
         return "redirect:/categoriesShow";
+    }
+
+    @GetMapping("/designation")
+    public String ListeCat(Model model, @RequestParam String designation){
+        model.addAttribute("listeByDesi",categorieService.findByDesignation(designation));
+        return "/admin/ListeDesiCategorie";
+    }
+
+    @PostMapping("/categorie/desi")
+    public String listeByname(@RequestParam String desi){
+        categorieService.findByDesignation(desi);
+        return "redirect:/designation";
     }
 }
