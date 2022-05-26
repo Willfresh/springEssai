@@ -26,8 +26,13 @@ public class Article {
     private int qteSeuil;
     @Transient
     private String etat;
+<<<<<<< HEAD
     /*@Transient
     private String desi;*/
+=======
+    @Transient
+    private String desi;
+>>>>>>> d4e4e41ba3f1696bdb0032f166926a656f2be84e
 
     @ManyToOne//pour une categorie j'ai plusieurs articles
     @JoinColumn(name= "categorieId",insertable = false, updatable = false)
