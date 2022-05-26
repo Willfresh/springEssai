@@ -113,7 +113,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " th:href="@{/home}">
+        <a class="nav-link "th:href="@{/home}">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
@@ -236,7 +236,7 @@
       <h1>Blank Page</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
           <li class="breadcrumb-item active">Formulaire d'ajout d'une categorie</li>
         </ol>
@@ -260,7 +260,7 @@
           <button type="submit">Enregistrer</button>-->
           <div class="col-12">
             <label for="validationDefault01" class="form-label"><h3>Designation</h3></label>
-            <input type="text" class="form-control" id="validationDefault01" name="designation" required>
+            <input type="text" class="form-control" id="validationDefault01" name="designation"placeholder="Designation" required>
           </div>
           <div class="col-12">
             <button class="btn btn-primary" type="submit">Enregistrer</button>
@@ -274,14 +274,14 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>TP VENTE</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Designed by <h6>CodeArt</h6>
     </div>
   </footer><!-- End Footer -->
 

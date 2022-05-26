@@ -23,4 +23,8 @@ public class ApproService {
     public void deleteAppro(int id){
         approRepository.deleteById(id);
     }
+
+    public List<Appro> findByQuantiteApr(int qteAppro){
+        return approRepository.findByQuant(qteAppro);
+    }
 }

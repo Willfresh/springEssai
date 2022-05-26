@@ -52,7 +52,7 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword" >
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -223,7 +223,11 @@
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+
+
+
     </ul>
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -234,7 +238,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Formulaire de modification d'un article</li>
+          <li class="breadcrumb-item active">Blank</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -242,45 +246,37 @@
     <section class="section">
       <div class="container">
 
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><h2>Formulaire de mise à jour d'un article</h2></a>
-          </li>
-        </ul>
-
-        <form class="row g-3" th:action="@{/articles/update}" th:object="${Un_article}" method="post">
-          <div class="Form-group">
-            <input type="hidden" th:field="*{id}" class="Form-control">
-            <input type="hidden" th:field="*{dateCreation}" class="Form-control">
-            <input type="hidden" th:field="*{qteStock}" class="Form-control">
-          </div>
-          <div class="col-12">
-            <label><h3>Designation</h3></label>
-            <select class="form-select" id="validationDefault01" th:field="*{categorieId}" required>
-              <option th:each="cat:${listeCategorie}"
-                      th:value="${cat.id}"
-                      th:utext="${cat.designation}">
-
-              </option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label for="validationDefault02" class="form-label">Libelle</label>
-            <input class="form-control" id="validationDefault02" type="text" th:field="*{libelle}">
-          </div>
-          <div class="col-md-6">
-            <label for="validationDefault03" class="form-label">prix</label>
-            <input class="form-control" id="validationDefault03" type="number" th:field="*{prix}">
-          </div>
-
-          <div class="col-md-6">
-            <label for="validationDefault05" class="form-label">Qte seuil</label>
-            <input type="number" th:field="*{qteSeuil}" class="form-control" id="validationDefault05">
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Enregistrer</button>
-          </div>
-        </form>
+        <h2>Liste des articles par nom</h2>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Catégorie</th>
+            <th>Libellé</th>
+            <th>Prix</th>
+            <th>Qte stock</th>
+            <th>Qte Seuil</th>
+            <th>Date Creation</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- thymeleaf a se documenter-->
+          <tr th:each="article:${listeByNamer}">
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.categorie.designation}"></td>
+            <td th:text="${article.libelle}"></td>
+            <td th:text="${article.prix}"></td>
+            <td th:text="${article.qteStock}"></td>
+            <td th:text="${article.qteSeuil}"></td>
+            <td th:text="${article.dateCreation}"></td>
+            <td>
+                <a th:href = "@{/articleApproEdit{id}(id = ${article.id})}" class="btn btn-warning"><i class="bi bi-cart4"></i></a>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
       </div>
     </section>
 

@@ -29,7 +29,18 @@ public class ArticleService {
         articleRepository.deleteById(id);
     }
     public void updateStockArticle(int qte, int id){
-        articleRepository.updateStockArticle(qte, id);}
+        articleRepository.updateStockArticle(qte, id);
+    }
+    public void degrade(int qte_art, int id_Art){
+        articleRepository.degradeStockArticle(qte_art, id_Art);
+    }
+
+    public List<Article> findByLibelle(String libelle){
+      return articleRepository.findByName(libelle);
+    }
+   /* public int totalArticle(int art){
+        return articleRepository.CountArticle(art);
+    }*/
 
     public List<Article> changerEtatArticle(List<Article> liste){
         for (Article a:liste){
@@ -38,6 +49,9 @@ public class ArticleService {
             }
             else{
                 a.setEtat(Constante.ETAT_NORMAL);
+            }
+            if (0>a.getQteStock()){
+                a.setEtat(Constante.ETAT_DANGER);
             }
         }
         return liste;
@@ -55,8 +69,11 @@ public class ArticleService {
     /*public List<Article> findByName(List<Article> liste){
         List<Article> listeName = new ArrayList<>();
         for (Article a:liste){
-            if(a.getLibelle()=a.)
+            if(a.getLibelle()==a.getDesi()){
+                listeName.add(a);
+            }
         }
+        return listeName;
     }*/
 
 }

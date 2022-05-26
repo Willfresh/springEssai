@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -23,7 +22,7 @@ public class ArticleController {
 
     @GetMapping("/articlesShow")
     public String showAllArticles(Model model){
-        model.addAttribute("listeArticle",articleService.changerEtatArticle( articleService.showAllArticles()));
+        model.addAttribute("listeArticle",articleService.changerEtatArticle(articleService.showAllArticles()));
         //pas obligé d'avoir le mm nom que le return
         return "admin/ListesArticles";
     }
@@ -34,7 +33,7 @@ public class ArticleController {
         return "admin/FormArticles";
     }
     @PostMapping("/articles/save")
-    public String saveArticle(Article article){
+    public String saveArticle(Article article,Model model){
         article.setQteStock(0);
         article.setDateCreation(LocalDate.now());
         articleService.saveArticle(article);
@@ -53,20 +52,36 @@ public class ArticleController {
         return "redirect:/articlesShow";
 
      }
+
+    /* @PostMapping("/total")
+    public String  totalCountArticle(int id,Model model){
+        model.addAttribute("nombreTotal",articleService.totalArticle(id));
+        //articleService.totalArticle(id);
+        return "redirect:/articlesShow";
+    }*/
+
     @GetMapping("/article/delete/{id}")
     public String deleteArticle(@PathVariable("id") int id){
         articleService.deleteArticle(id);
         return "redirect:/articlesShow";
-
     }
+
+
     @GetMapping("/articlesEtatSeuil")
     public String listeSeuil(Model model){
         model.addAttribute("listeSeuil",articleService.articleEtatCritique(articleService.showAllArticles()));
         return "admin/ListeSeuil";
     }
 
-   /*
-    public Article<List<Article>> getArticleByName(@RequestParam String libelle){
-        return new Article<List<Article>>(arti)
-    }*/
+    @GetMapping("/name")
+    public String Liste(Model model, @RequestParam String libelle){
+        model.addAttribute("listeByNamer",articleService.findByLibelle(libelle));
+        return "/admin/ListeName";
+    }
+
+    @PostMapping("/articles/nom")
+    public String listeByname(@RequestParam String desi){
+        articleService.findByLibelle(desi);
+        return "redirect:/name";
+    }
 }

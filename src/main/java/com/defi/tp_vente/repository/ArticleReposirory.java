@@ -21,8 +21,17 @@ ArticleReposirory extends JpaRepository<Article,Integer> {
     void updateStockArticle(@Param("qte") int qte, @Param("idArticle") int idArticle);
 
     /*List<Article> findByName(String libelle);*/
+    //@Transactional
+    @Query("select a from Article a where a.libelle like %?1%")
+    List<Article> findByName(String desi);
 
+    @Modifying
+    @Transactional
+    @Query("Update Article v set v.qteStock=v.qteStock -:qte_art where v.id=:id_Art")
+    void degradeStockArticle(@Param("qte_art") int qte_art, @Param("id_Art") int id_Art);
 
+    /*@Query("select a count(a.id) from Article ")
+    int CountArticle(int art);*/
 
 }
 

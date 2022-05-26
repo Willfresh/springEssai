@@ -223,7 +223,11 @@
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+
+
+
     </ul>
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -232,9 +236,9 @@
       <h1>Blank Page</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Formulaire de modification d'un article</li>
+          <li class="breadcrumb-item active">Formulaire de modification d'un approvisionement</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -244,42 +248,35 @@
 
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><h2>Formulaire de mise à jour d'un article</h2></a>
+            <a class="nav-link active" aria-current="page" href="#"><h2>Formulaire de mise à jour d'un approvisionnement</h2></a>
           </li>
         </ul>
 
-        <form class="row g-3" th:action="@{/articles/update}" th:object="${Un_article}" method="post">
-          <div class="Form-group">
-            <input type="hidden" th:field="*{id}" class="Form-control">
-            <input type="hidden" th:field="*{dateCreation}" class="Form-control">
-            <input type="hidden" th:field="*{qteStock}" class="Form-control">
-          </div>
-          <div class="col-12">
-            <label><h3>Designation</h3></label>
-            <select class="form-select" id="validationDefault01" th:field="*{categorieId}" required>
-              <option th:each="cat:${listeCategorie}"
-                      th:value="${cat.id}"
-                      th:utext="${cat.designation}">
 
-              </option>
-            </select>
+        <form class="row g-3" th:action="@{/article/appro/update}" th:object="${un_article}" method="post">
+
+          <div class = "col-md-6">
+            <label for="validationDefault02" class="form-label">Catégorie</label>
+            <input type = "text" th:field="*{categorie.designation}" disabled class="form-control" id="validationDefault02" >
           </div>
-          <div class="col-md-6">
-            <label for="validationDefault02" class="form-label">Libelle</label>
-            <input class="form-control" id="validationDefault02" type="text" th:field="*{libelle}">
-          </div>
-          <div class="col-md-6">
-            <label for="validationDefault03" class="form-label">prix</label>
-            <input class="form-control" id="validationDefault03" type="number" th:field="*{prix}">
+          <div class = "col-md-6">
+            <label for="validationDefault03" class="form-label">Libelle</label>
+            <input type = "text" th:field="*{libelle}" disabled class="form-control" id="validationDefault03" >
           </div>
 
-          <div class="col-md-6">
-            <label for="validationDefault05" class="form-label">Qte seuil</label>
-            <input type="number" th:field="*{qteSeuil}" class="form-control" id="validationDefault05">
+          <div class = "col-md-6">
+            <label for="validationDefault04" class="form-label">Quantité Stock</label>
+            <input type = "number" th:field="*{qteStock}" disabled class="form-control" id="validationDefault04">
+          </div>
+
+          <div class = "col-md-6">
+            <label for="validationDefault05" class="form-label">Quantite approvisionneé</label>
+            <input type="number" name="qte" class="form-control"  id="validationDefault05">
           </div>
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Enregistrer</button>
+            <button type="submit " class="btn btn-primary">Enregistrer</button>
           </div>
+
         </form>
       </div>
     </section>
