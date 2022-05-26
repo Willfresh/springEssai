@@ -66,18 +66,14 @@ public class ArticleService {
         }
         return listeSeuil;
     }
-    public List<Article> findByName(List<Article> liste){
+    public List<Article> findByName(List<Article> liste) {
         List<Article> listeName = new ArrayList<>();
-        for (Article a:liste){
-            if(a.getLibelle()==a.getDesi()){
+        for (Article a : liste) {
+            if (a.getLibelle() == a.getDesi()) {
                 listeName.add(a);
             }
         }
         return listeName;
-<<<<<<< HEAD
-    }*/
-=======
-    }
->>>>>>> d4e4e41ba3f1696bdb0032f166926a656f2be84e
 
+    }
 }
