@@ -26,6 +26,11 @@ public class ArticleController {
         //pas obligé d'avoir le mm nom que le return
         return "admin/ListesArticles";
     }
+    @GetMapping("/contact")
+    public String contact(Model model){
+
+        return "admin/pages-contact";
+    }
 
     @GetMapping("/articlesForm")
     public String ShowFormArticle(Model model){

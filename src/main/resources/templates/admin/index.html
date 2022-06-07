@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
   <meta charset="utf-8">
@@ -66,6 +66,12 @@
           </a>
         </li><!-- End Search Icon-->
 
+        <div sec:authorize="isAuthenticated()">
+          <form id="logoutrForm" method="POST" th:action="@{/logout}">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          </form>
+         <span sec:authentication="name"></span>
+        </div>
 
         <li class="nav-item dropdown pe-3">
 
@@ -91,13 +97,16 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" onclick="document.forms['logoutForm'].submit()">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                 <!-- <a onclick="document.forms['logoutForm'].submit()"-->
+                </a>
+              </li>
+            </form>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -204,21 +213,21 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" th:href="@{/contact}">
           <i class="bi bi-envelope"></i>
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="/registration">
           <i class="bi bi-card-list"></i>
           <span>Register</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="/login">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Login</span>
         </a>
